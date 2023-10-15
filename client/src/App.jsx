@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -10,18 +12,8 @@ function App() {
             <span class="badge rounded-pill text-bg-primary">Home Page</span>
           }
         />
-        <Route
-          path="/register"
-          element={
-            <span class="badge rounded-pill text-bg-primary">Sign in</span>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <span class="badge rounded-pill text-bg-primary">Log in</span>
-          }
-        />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route
           path="/tasks"
           element={
