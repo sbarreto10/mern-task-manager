@@ -12,16 +12,22 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [ user, setUser ] = useState(null); // Usuario que va a poder ser leído en toda la app
+  const [user, setUser] = useState(null); // Usuario que va a poder ser leído en toda la app
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const signup = async (user) => {
-    const res = await registerRequest(user);
-    setUser(res.data);
-    console.log(user);
+    try{
+      const res = await registerRequest(user);
+      console.log(res.data);
+      setUser(res.data);
+      setIsAuthenticated(true);
+    }catch(err){
+      console.log(err);
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ signup, user }}>
+    <AuthContext.Provider value={{ signup, user, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

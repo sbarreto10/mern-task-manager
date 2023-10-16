@@ -11,7 +11,7 @@ function App() {
           <Route
             path="/"
             element={
-              <span class="badge rounded-pill text-bg-primary">Home Page</span>
+              <span className="badge rounded-pill text-bg-primary">Home Page</span>
             }
           />
           <Route path="/register" element={<RegisterPage />} />
@@ -19,25 +19,25 @@ function App() {
           <Route
             path="/tasks"
             element={
-              <span class="badge rounded-pill text-bg-info">All tasks</span>
+              <span className="badge rounded-pill text-bg-info">All tasks</span>
             }
           />
           <Route
             path="/add-task"
             element={
-              <span class="badge rounded-pill text-bg-info">Add task</span>
+              <span className="badge rounded-pill text-bg-info">Add task</span>
             }
           />
           <Route
             path="/task/:id"
             element={
-              <span class="badge rounded-pill text-bg-info">Update task</span>
+              <span className="badge rounded-pill text-bg-info">Update task</span>
             }
           />
           <Route
             path="/profile"
             element={
-              <span class="badge rounded-pill text-bg-success">Profile</span>
+              <span className="badge rounded-pill text-bg-success">Profile</span>
             }
           />
         </Routes>

@@ -1,14 +1,20 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   // register
   const { register, handleSubmit } = useForm();
-  const { formState: { errors } } = useForm()
-  const { signup, user } = useAuth(); // Los valores del contexto
+  const { signup, isAuthenticated } = useAuth(); // Los valores del contexto
+  const navigate = useNavigate() 
+
+  useEffect(() => {
+    if(isAuthenticated) navigate("/tasks")
+  }, [isAuthenticated])
 
   const onSubmit = handleSubmit(async (values) => {
-    signup(values);
+    await signup(values);
   })
 
   return (
@@ -18,24 +24,19 @@ function RegisterPage() {
       >
         <input
           type="text"
-          {...register("username", { required: "this field is required" }, {
-            maxLength: 6
-        })}
+          {...register("username", { required: "this field is required" })}
           placeholder="Username"
         />
-        {errors.username && <span>errors.username.message</span>}
         <input
           type="email"
           {...register("email", { required: "this field is required" })}
           placeholder="Email"
         />
-        {errors.email && <span>errors.email.message</span>}
         <input
           type="password"
           {...register("password", { required: "this field is required" })}
           placeholder="Password"
         />
-        {errors.password && <span>errors.password.message</span>}
         <button type="submit">Sign in</button>
       </form>
     </div>
