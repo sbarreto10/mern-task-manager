@@ -13,6 +13,9 @@ export const register = async (req, res) => {
       username,
       password: passwordHash,
     });
+
+    
+
     const userSaved = await newUser.save();
 
     const token = await createAccessToken({ id: userSaved.id });
@@ -27,6 +30,7 @@ export const register = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    res.json(error.response.data)
   }
 };
 
