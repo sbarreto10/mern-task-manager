@@ -1,36 +1,45 @@
 import { useForm } from "react-hook-form";
-import { registerRequest } from "../api/auth";
+import { useAuth } from "../context/AuthContext";
 
 function RegisterPage() {
-   const { register, handleSubmit } = useForm();
+  // register
+  const { register, handleSubmit } = useForm();
+  const { formState: { errors } } = useForm()
+  const { signup, user } = useAuth(); // Los valores del contexto
 
-   return (
-     <div>
-       <form
-         onSubmit={handleSubmit(async (values) => {
-           const res = await registerRequest(values)
-           console.log(res);
-         })}
-       >
-         <input
-           type="text"
-           {...register("username", { required: true })}
-           placeholder="Username"
-         />
-         <input
-           type="email"
-           {...register("email", { required: true })}
-           placeholder="Email"
-         />
-         <input
-           type="password"
-           {...register("password", { required: true })}
-           placeholder="Password"
-         />
-         <button type="submit">Sign in</button>
-       </form>
-     </div>
-   );
+  const onSubmit = handleSubmit(async (values) => {
+    signup(values);
+  })
+
+  return (
+    <div>
+      <form
+        onSubmit={onSubmit}
+      >
+        <input
+          type="text"
+          {...register("username", { required: "this field is required" }, {
+            maxLength: 6
+        })}
+          placeholder="Username"
+        />
+        {errors.username && <span>errors.username.message</span>}
+        <input
+          type="email"
+          {...register("email", { required: "this field is required" })}
+          placeholder="Email"
+        />
+        {errors.email && <span>errors.email.message</span>}
+        <input
+          type="password"
+          {...register("password", { required: "this field is required" })}
+          placeholder="Password"
+        />
+        {errors.password && <span>errors.password.message</span>}
+        <button type="submit">Sign in</button>
+      </form>
+    </div>
+  );
 }
 
-export default RegisterPage
+export default RegisterPage;
