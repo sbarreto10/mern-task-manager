@@ -7,10 +7,11 @@ export const register = async (req, res) => {
 
   try {
     const userFound = await User.findOne({ email });
-    if (userFound)
-      return res.status(409).json({ message: ["Email already exists"] });
-
+    if (userFound){
+      return res.status(409).json(["Email already exists"]);
+}
     const passwordHash = await bcrypt.hash(password, 10);
+    // const passwordHash = ""
 
     const newUser = new User({
       email,
@@ -31,8 +32,7 @@ export const register = async (req, res) => {
       updatedAt: userSaved.updatedAt,
     });
   } catch (error) {
-    console.log(error);
-    res.json(error.response.data);
+    res.status(404).json(error.errors);
   }
 };
 
