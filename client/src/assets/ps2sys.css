@@ -1,0 +1,24 @@
+#PS2Form-container {
+  background-image: url("/ps2sys.gif");
+  background-repeat: no-repeat;
+  background-size:120%;
+  background-position: center;
+  
+
+  width: 500px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgb(255, 255, 255);
+}
+
+form {
+   width: 50%;
+   margin-top: 10%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}

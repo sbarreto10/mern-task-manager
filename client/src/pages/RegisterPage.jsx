@@ -3,8 +3,9 @@ import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import PS2Form from "../components/PS2Form";
+
 function RegisterPage() {
-  // register
   const { register, handleSubmit } = useForm();
   const { signup, isAuthenticated, errors: errors } = useAuth(); // Los valores del contexto
   const navigate = useNavigate();
@@ -21,29 +22,10 @@ function RegisterPage() {
     });
   });
 
-  console.log(errors);
-
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input type="text" {...register("username")} placeholder="Username" />
-        <input type="email" {...register("email")} placeholder="Email" />
-        <input
-          type="password"
-          {...register("password")}
-          placeholder="Password"
-        />
-        <button type="submit">Sign in</button>
-      </form>
-      {Boolean(errors.length) && (
-        <div className="d-flex flex-column justify-content-center gap-2 p-2">
-          {errors.map((err) => (
-            <div className="text-danger" key={err}>
-              * {err}
-            </div>
-          ))}
-        </div>
-      )}
+    <div id="page-container">
+      <h1 className="mb-4">Sign in</h1>
+      <PS2Form id="PS2Form" onSubmit={onSubmit} register={register} errors={errors} fields= {{"username": "text","email": "text","password": "password"}}/>
     </div>
   );
 }
