@@ -24,7 +24,7 @@ function RegisterPage() {
 
   return (
     <div id="page-container">
-      <h1 className="mb-4">Sign in</h1>
+      <h1 className="mb-4">Sign up</h1>
       <PS2Form id="PS2Form" onSubmit={onSubmit} register={register} errors={errors} fields= {{"username": "text","email": "text","password": "password"}}/>
     </div>
   );
