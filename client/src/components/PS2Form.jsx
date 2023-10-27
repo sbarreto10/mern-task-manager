@@ -17,10 +17,10 @@ const PS2Form = ({ onSubmit, register, errors, fields }) => {
         <button type="submit">Sign in</button>
       </form>
       {Boolean(errors.length) && (
-        <div className="d-flex flex-column gap-2">
+        <div className="error-container">
           {errors.map((err) => (
             <div
-              className="badge text-bg-danger align-self-start opacity-75"
+              className="badge text-bg-danger align-self-start opacity-75 text-wrap p-r-4"
               key={err}
             >
               {err}

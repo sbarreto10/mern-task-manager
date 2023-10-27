@@ -34,3 +34,11 @@ form {
 input:focus{
   outline: none;
 }
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  gap: 0.5rem;
+  padding-right: 1.75em;
+}
