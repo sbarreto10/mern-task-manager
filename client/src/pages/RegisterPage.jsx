@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import PS2Form from "../components/PS2Form";
+import UserForm from "../components/UserForm";
 
 function RegisterPage() {
   const { register, handleSubmit } = useForm();
@@ -25,7 +25,13 @@ function RegisterPage() {
   return (
     <div id="page-container">
       <h1 className="mb-4">Sign up</h1>
-      <PS2Form id="PS2Form" onSubmit={onSubmit} register={register} errors={errors} fields= {{"username": "text","email": "text","password": "password"}}/>
+      <UserForm
+        id="UserForm"
+        onSubmit={onSubmit}
+        register={register}
+        errors={errors}
+        fields={{ username: "text", email: "text", password: "password" }}
+      />
     </div>
   );
 }

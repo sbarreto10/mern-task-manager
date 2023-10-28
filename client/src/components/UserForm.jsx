@@ -1,13 +1,13 @@
 import React from "react";
-import "../assets/ps2sys.css";
+import "../assets/user-form.css";
 
-const PS2Form = ({ onSubmit, register, errors, fields }) => {
+const UserForm = ({ onSubmit, register, errors, fields }) => {
   return (
-    <div id="PS2Form-container" className="bg-image">
+    <div id="form-container">
       <form className="gap-4" onSubmit={onSubmit}>
         {Object.keys(fields).map((key) => (
           <input
-          className="form-control shadow-none p-1"
+          className="shadow-none p-1"
             type={fields[key]}
             {...register(key)}
             placeholder={key}
@@ -20,7 +20,7 @@ const PS2Form = ({ onSubmit, register, errors, fields }) => {
         <div className="error-container">
           {errors.map((err) => (
             <div
-              className="badge text-bg-danger align-self-start opacity-75 text-wrap p-r-4"
+              className="input-error"
               key={err}
             >
               {err}
@@ -32,4 +32,4 @@ const PS2Form = ({ onSubmit, register, errors, fields }) => {
   );
 };
 
-export default PS2Form;
+export default UserForm;
