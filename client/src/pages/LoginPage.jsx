@@ -7,9 +7,16 @@ import UserForm from "../components/UserForm";
 
 function LoginPage() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const { user, signin, isAuthenticated, errors: errors } = useAuth(); // Los valores del contexto
+  const onSubmit = handleSubmit(async (values) => {
+    await signin({
+      email: values.email.length ? values.email : undefined,
+      password: values.password.length ? values.password : undefined,
+    });
   });
+  
+  if(user!=null)
+  console.log("logged as", user.username);
 
   return (
     <div id="page-container">
@@ -18,8 +25,9 @@ function LoginPage() {
         id="PS2Form"
         onSubmit={onSubmit}
         register={register}
-        errors={[]}
+        errors={errors}
         fields={{ email: "text", password: "password" }}
+        operation="Sign in"
       />
     </div>
   );

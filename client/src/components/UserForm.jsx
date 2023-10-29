@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/user-form.css";
 
-const UserForm = ({ onSubmit, register, errors, fields }) => {
+const UserForm = ({ onSubmit, register, errors, fields, operation }) => {
   return (
     <div id="form-container">
       <form className="gap-4" onSubmit={onSubmit}>
@@ -14,7 +14,7 @@ const UserForm = ({ onSubmit, register, errors, fields }) => {
             key={`input-${key}`}
           />
         ))}
-        <button type="submit">Sign in</button>
+        <button type="submit">{operation}</button>
       </form>
       {Boolean(errors.length) && (
         <div className="error-container">

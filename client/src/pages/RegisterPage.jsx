@@ -31,6 +31,7 @@ function RegisterPage() {
         register={register}
         errors={errors}
         fields={{ username: "text", email: "text", password: "password" }}
+        operation="Sign up"
       />
     </div>
   );
