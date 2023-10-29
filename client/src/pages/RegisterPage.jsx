@@ -7,7 +7,7 @@ import UserForm from "../components/UserForm";
 
 function RegisterPage() {
   const { register, handleSubmit } = useForm();
-  const { signup, isAuthenticated, errors: errors } = useAuth(); // Los valores del contexto
+  const { signup, isAuthenticated, errors: errors, errorsOccurred  } = useAuth(); // Los valores del contexto
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +30,7 @@ function RegisterPage() {
         onSubmit={onSubmit}
         register={register}
         errors={errors}
+        errorsOccurred={errorsOccurred}
         fields={{ username: "text", email: "text", password: "password" }}
         operation="Sign up"
       />

@@ -43,4 +43,11 @@ input:-webkit-autofill{
   color: red;
   font-size: 0.75em;
   font-weight: bold;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.input-errors-exit {
+  opacity: 0;
+  transition: opacity 0.5s;
 }

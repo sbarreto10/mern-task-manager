@@ -1,13 +1,22 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 import "../assets/user-form.css";
 
-const UserForm = ({ onSubmit, register, errors, fields, operation }) => {
+const UserForm = ({
+  onSubmit,
+  register,
+  errors,
+  errorsOccurred,
+  fields,
+  operation,
+}) => {
+  console.log(errorsOccurred);
   return (
     <div id="form-container">
       <form className="gap-4" onSubmit={onSubmit}>
         {Object.keys(fields).map((key) => (
           <input
-          className="shadow-none p-1"
+            className="shadow-none p-1"
             type={fields[key]}
             {...register(key)}
             placeholder={key}
@@ -16,18 +25,19 @@ const UserForm = ({ onSubmit, register, errors, fields, operation }) => {
         ))}
         <button type="submit">{operation}</button>
       </form>
-      {Boolean(errors.length) && (
+      <CSSTransition
+        in={errorsOccurred}
+        timeout={1000}
+        classNames={"input-errors"}
+      >
         <div className="error-container">
           {errors.map((err) => (
-            <div
-              className="input-error"
-              key={err}
-            >
+            <div className="input-error" key={err}>
               {err}
             </div>
           ))}
         </div>
-      )}
+      </CSSTransition>
     </div>
   );
 };

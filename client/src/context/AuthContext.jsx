@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest } from "../api/auth.js";
 
 export const AuthContext = createContext();
@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Usuario que va a poder ser leído en toda la app
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [errorsOccurred, setErrorsOccurred] = useState(false);
 
   const signup = async (user) => {
     try {
@@ -36,9 +37,24 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    if (Boolean(errors.length)) {
+      setErrorsOccurred(true);
+      const timeOutErrors = setTimeout(() => {
+        setErrors([]);
+      }, 5000);
+      const timeOutErrorsOccurred = setTimeout(() => {
+        setErrorsOccurred(false);
+      }, 4000);
+      return () => {
+        clearTimeout(timeOutErrors);
+        clearTimeout(timeOutErrorsOccurred);
+      };
+    }
+  }, [errors]);
   return (
     <AuthContext.Provider
-      value={{ signup, signin, user, isAuthenticated, errors }}
+      value={{ signup, signin, user, isAuthenticated, errors, errorsOccurred }}
     >
       {children}
     </AuthContext.Provider>

@@ -7,7 +7,7 @@ import UserForm from "../components/UserForm";
 
 function LoginPage() {
   const { register, handleSubmit } = useForm();
-  const { user, signin, isAuthenticated, errors: errors } = useAuth(); // Los valores del contexto
+  const { user, signin, isAuthenticated, errors: errors, errorsOccurred } = useAuth(); // Los valores del contexto
   const onSubmit = handleSubmit(async (values) => {
     await signin({
       email: values.email.length ? values.email : undefined,
@@ -26,6 +26,7 @@ function LoginPage() {
         onSubmit={onSubmit}
         register={register}
         errors={errors}
+        errorsOccurred={errorsOccurred}
         fields={{ email: "text", password: "password" }}
         operation="Sign in"
       />
