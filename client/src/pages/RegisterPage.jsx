@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import UserForm from "../components/UserForm";
 
@@ -34,6 +34,7 @@ function RegisterPage() {
         fields={{ username: "text", email: "text", password: "password" }}
         operation="Sign up"
       />
+      <Link to="/login">Already have an account? Sign in!</Link>
     </div>
   );
 }

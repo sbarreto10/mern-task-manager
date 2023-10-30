@@ -10,7 +10,6 @@ const UserForm = ({
   fields,
   operation,
 }) => {
-  console.log(errorsOccurred);
   return (
     <div id="form-container">
       <form className="gap-4" onSubmit={onSubmit}>

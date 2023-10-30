@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import UserForm from "../components/UserForm";
 
@@ -30,6 +30,7 @@ function LoginPage() {
         fields={{ email: "text", password: "password" }}
         operation="Sign in"
       />
+      <Link to="/register">Don't have an account? Sign up!</Link>
     </div>
   );
 }

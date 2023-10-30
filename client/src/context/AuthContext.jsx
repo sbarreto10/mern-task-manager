@@ -17,9 +17,9 @@ export const AuthProvider = ({ children }) => {
   const [errors, setErrors] = useState([]);
   const [errorsOccurred, setErrorsOccurred] = useState(false);
 
-  const signup = async (user) => {
+  const sign = (requestFunction) => async (user) => {
     try {
-      const res = await registerRequest(user);
+      const res = await requestFunction(user);
       setUser(res.data);
       setIsAuthenticated(true);
     } catch (err) {
@@ -27,15 +27,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signin = async (user) => {
-    try {
-      const res = await loginRequest(user);
-      setUser(res.data);
-      setIsAuthenticated(true);
-    } catch (err) {
-      setErrors(err.response.data);
-    }
-  };
+  const signup = sign(registerRequest)
+  const signin = sign(loginRequest)
 
   useEffect(() => {
     if (Boolean(errors.length)) {
