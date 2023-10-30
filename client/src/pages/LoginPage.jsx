@@ -7,16 +7,19 @@ import UserForm from "../components/UserForm";
 
 function LoginPage() {
   const { register, handleSubmit } = useForm();
-  const { user, signin, isAuthenticated, errors: errors, errorsOccurred } = useAuth(); // Los valores del contexto
+  const { signin, isAuthenticated, errors: errors, errorsOccurred } = useAuth(); // Los valores del contexto
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/tasks");
+  }, [isAuthenticated]);
+
   const onSubmit = handleSubmit(async (values) => {
     await signin({
       email: values.email.length ? values.email : undefined,
       password: values.password.length ? values.password : undefined,
     });
   });
-  
-  if(user!=null)
-  console.log("logged as", user.username);
 
   return (
     <div id="page-container">
