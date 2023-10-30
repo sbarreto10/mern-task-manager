@@ -7,7 +7,7 @@ import UserForm from "../components/UserForm";
 
 function RegisterPage() {
   const { register, handleSubmit } = useForm();
-  const { signup, isAuthenticated, errors: errors, errorsOccurred  } = useAuth(); // Los valores del contexto
+  const { signup, isAuthenticated, errors: errors, errorsOccurred } = useAuth(); // Los valores del contexto
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,7 +34,9 @@ function RegisterPage() {
         fields={{ username: "text", email: "text", password: "password" }}
         operation="Sign up"
       />
-      <Link to="/login">Already have an account? Sign in!</Link>
+      <span className="link-to">
+        Already have an account? <Link to="/login">Sign in!</Link>
+      </span>
     </div>
   );
 }

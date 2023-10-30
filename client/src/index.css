@@ -13,3 +13,7 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(210, 210, 0);
 }
+
+.link-to {
+  color: #eee;
+}
