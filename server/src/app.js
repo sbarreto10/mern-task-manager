@@ -8,7 +8,8 @@ import cors from "cors"
 const app = express();
 
 app.use(cors({
-   origin: "http://localhost:5173"
+   origin: "http://localhost:5173",
+   credentials: true
 }))
 app.use(morgan("dev")); // para visualizar las peticiones
 app.use(express.json()); // para transformar los req.body en json (si no, el backend devolvería undefined)

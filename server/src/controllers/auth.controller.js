@@ -7,9 +7,9 @@ export const register = async (req, res) => {
 
   try {
     const userFound = await User.findOne({ email });
-    if (userFound){
+    if (userFound) {
       return res.status(409).json(["Email already exists"]);
-}
+    }
     const passwordHash = await bcrypt.hash(password, 10);
     // const passwordHash = ""
 
@@ -32,7 +32,7 @@ export const register = async (req, res) => {
       updatedAt: userSaved.updatedAt,
     });
   } catch (error) {
-    res.status(404).json(error.errors);
+    res.status(404).json(error.errors.map((error) => error.message));
   }
 };
 
@@ -41,10 +41,10 @@ export const login = async (req, res) => {
 
   try {
     const userFound = await User.findOne({ email });
-    if (!userFound) return res.status(404).json({ message: "Invalid user" });
+    if (!userFound) return res.status(404).json(["Email not registered"]);
 
     const isMatch = await bcrypt.compare(password, userFound.password);
-    if (!isMatch) return res.status(404).json({ message: "Invalid password" });
+    if (!isMatch) return res.status(404).json(["Invalid password"]);
 
     const token = await createAccessToken({ id: userFound.id });
     res.cookie("token", token);
@@ -57,7 +57,7 @@ export const login = async (req, res) => {
       updatedAt: userFound.updatedAt,
     });
   } catch (error) {
-    console.log(error);
+    res.status(404).json(error.errors.map((error) => error.message));
   }
 };
 
@@ -70,8 +70,6 @@ export const logout = async (req, res) => {
 
 export const profile = async (req, res) => {
   const userFound = await User.findById(req.user.id);
-  // if (!userFound) return res.status(404).json({ message: "User not found" });
-  // PORQUE, DIGAMOSEA, YA HAY UN MW DE VALIDACION
 
   return res.json({
     id: userFound.id,
@@ -88,7 +86,7 @@ export const changePassword = async (req, res) => {
   const userFound = await User.findById(req.user.id);
 
   const isMatch = await bcrypt.compare(password, userFound.password);
-  if (!isMatch) return res.status(404).json({ message: "Invalid password" });
+  if (!isMatch) return res.status(404).json(["Invalid password"]);
 
   try {
     const passwordHash = await bcrypt.hash(newPassword, 10);
@@ -96,7 +94,7 @@ export const changePassword = async (req, res) => {
 
     res.status(200).json({ message: "Password updated" });
   } catch (error) {
-    console.log(error);
+    res.status(404).json(error.errors.map((error) => error.message));
   }
 };
 

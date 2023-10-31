@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest } from "../api/auth.js";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
@@ -12,7 +13,8 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Usuario que va a poder ser leído en toda la app
+
+  const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
   const [errorsOccurred, setErrorsOccurred] = useState(false);
@@ -27,8 +29,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signup = sign(registerRequest)
-  const signin = sign(loginRequest)
+  const signup = sign(registerRequest);
+  const signin = sign(loginRequest);
 
   useEffect(() => {
     if (Boolean(errors.length)) {
@@ -45,6 +47,11 @@ export const AuthProvider = ({ children }) => {
       };
     }
   }, [errors]);
+
+  useEffect(() => {
+    Boolean(Cookies.get().token) && setIsAuthenticated(true)
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{ signup, signin, user, isAuthenticated, errors, errorsOccurred }}
