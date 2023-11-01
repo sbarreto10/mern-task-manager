@@ -94,7 +94,7 @@ export const changePassword = async (req, res) => {
 
     res.status(200).json({ message: "Password updated" });
   } catch (error) {
-    res.status(404).json(error.errors.map((error) => error.message));
+    res.status(404).json(error);
   }
 };
 
@@ -105,4 +105,12 @@ export const changeUsername = async (req, res) => {
   const updatedUser = await userFound.updateOne({ username });
 
   res.status(200).json({ message: "Username updated" });
+};
+
+export const verifyToken = async (req, res) => {
+  return res.json({
+    id: req.user.id,
+    email: req.user.email,
+    username: req.user.username,
+  });
 };
