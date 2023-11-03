@@ -1,0 +1,71 @@
+#form-container {
+  width: 500px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+
+  border-left: solid 1px #eee;
+  border-right: solid 1px #eee;
+}
+
+form {
+   width: 50%;
+   margin-top: 5%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   transform: scale(0.75);
+}
+
+input, textarea {
+  padding: 4px;
+  color: #eee;
+  background-color: transparent;
+  border: hidden;
+  border-bottom: solid 1px #eee;
+}
+
+textarea {
+  padding: 4px;
+  color: #eee;
+  background-color: transparent;
+  border: solid 1px #eee;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover, 
+textarea:-webkit-autofill:focus, 
+textarea:-webkit-autofill:active{
+  -webkit-box-shadow: 0 0 0 30px #111 inset !important;
+  -webkit-text-fill-color: #eee !important;
+  outline: none!important;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  gap: 0.5rem;
+  padding-right: 1.75em;
+}
+
+.input-error {
+  color: red;
+  font-size: 0.75em;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.input-errors-exit {
+  opacity: 0;
+  transition: opacity 0.5s;
+}

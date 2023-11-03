@@ -25,7 +25,7 @@ function LoginPage() {
     <div id="page-container">
       <h1 className="mb-4">Sign in</h1>
       <UserForm
-        id="PS2Form"
+        id="login-usedr-form"
         onSubmit={onSubmit}
         register={register}
         errors={errors}

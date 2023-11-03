@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
 import UserForm from "../components/UserForm";
 
 function RegisterPage() {
@@ -26,7 +25,7 @@ function RegisterPage() {
     <div id="page-container">
       <h1 className="mb-4">Sign up</h1>
       <UserForm
-        id="UserForm"
+        id="login-usedr-form"
         onSubmit={onSubmit}
         register={register}
         errors={errors}
