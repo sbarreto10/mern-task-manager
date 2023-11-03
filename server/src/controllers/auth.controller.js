@@ -32,7 +32,7 @@ export const register = async (req, res) => {
       updatedAt: userSaved.updatedAt,
     });
   } catch (error) {
-    res.status(404).json(error.errors.map((error) => error.message));
+    res.status(404).json(error);
   }
 };
 
@@ -57,7 +57,7 @@ export const login = async (req, res) => {
       updatedAt: userFound.updatedAt,
     });
   } catch (error) {
-    res.status(404).json(error.errors.map((error) => error.message));
+    res.status(404).json(error);
   }
 };
 
