@@ -1,0 +1,10 @@
+.task-container {
+  min-height: 200px;
+  height: fit-content;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  color: #eee;
+  border-left: solid 1px #eee;
+  border-right: solid 1px #eee;
+}

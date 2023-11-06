@@ -16,14 +16,12 @@ export const useTasks = () => {
   return context;
 };
 
-export const tasksProvider = ({ children }) => {
+export const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
+  useEffect(() => { setTasks(["task1", "task2", "task3","task4", "task5", "task6", "task7"]) },[])
+
   return (
-    <TasksContext.Provider
-      value={{  }}
-    >
-      {children}
-    </TasksContext.Provider>
+    <TasksContext.Provider value={{ tasks }}>{children}</TasksContext.Provider>
   );
 };
