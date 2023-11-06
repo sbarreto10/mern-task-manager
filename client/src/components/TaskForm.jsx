@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "../assets/task-form.css";
 
-const TaskForm = ({
-  onSubmit,
-  register,
-  errors,
-  errorsOccurred,
-  operation,
-}) => {
+const TaskForm = ({ onSubmit, register, operation }) => {
   return (
     <div id="form-container">
-      <form className="gap-4" onSubmit={onSubmit}>
+      <form
+        className="gap-4"
+        onSubmit={onSubmit}
+      >
         <input
           className="shadow-none p-1"
           type="text"
@@ -24,10 +21,10 @@ const TaskForm = ({
           {...register("description")}
           placeholder="Description"
           key="input-task-description"
-          />
+        />
         <button type="submit">{operation}</button>
       </form>
-      <CSSTransition
+      {/* <CSSTransition
         in={errorsOccurred}
         timeout={1000}
         classNames={"input-errors"}
@@ -39,7 +36,7 @@ const TaskForm = ({
             </div>
           ))}
         </div>
-      </CSSTransition>
+      </CSSTransition> */}
     </div>
   );
 };

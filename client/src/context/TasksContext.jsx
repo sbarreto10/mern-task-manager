@@ -1,9 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
-// import {
-//   registerRequest,
-//   loginRequest,
-//   verifyTokenRequest,
-// } from "../api/auth.js";
+import {
+  getTaskRequest,
+  createTaskRequest
+} from "../api/tasks.js";
 // import Cookies from "js-cookie";
 
 export const TasksContext = createContext();
@@ -19,9 +18,15 @@ export const useTasks = () => {
 export const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
-  useEffect(() => { setTasks(["task1", "task2", "task3","task4", "task5", "task6", "task7"]) },[])
+  const createTask = async (task) => {
+    try {
+      const res = await createTaskRequest(task);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <TasksContext.Provider value={{ tasks }}>{children}</TasksContext.Provider>
+    <TasksContext.Provider value={{ tasks, createTask }}>{children}</TasksContext.Provider>
   );
 };
