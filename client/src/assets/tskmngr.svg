@@ -1,0 +1,10 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <path stroke="#000" stroke-width="8" id="svg_3" d="m75.50847,252.98505l52.41942,-58.67817l143.60215,160.67036l239.38015,-267.78394l52.43795,58.6367l-291.8181,326.50358" fill="#eeff00"/>
+  <line stroke="#000" id="svg_6" y2="483.44883" x2="279.60991" y1="250.31852" x1="72.29446" stroke-width="8" fill="none"/>
+  <text stroke="#000" font-style="normal" font-weight="bold" transform="matrix(7.21757 0 0 8.70815 -2515.95 -1729.91)" xml:space="preserve" text-anchor="start" font-family="monospace" font-size="30" id="svg_10" y="255.02106" x="385.67258" fill="#bf0000">mngr</text>
+  <text stroke="#000" font-style="normal" font-weight="bold" transform="matrix(7.21755 0 0 8.70817 -2319.27 -1755.78)" xml:space="preserve" text-anchor="start" font-family="monospace" font-size="30" id="svg_12" y="242.43914" x="373.3198" fill="#bf0000">tsk</text>
+ </g>
+</svg>
