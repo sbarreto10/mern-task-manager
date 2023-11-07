@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const TasksPage = () => {
-  const { tasks, getTasks } = useTasks();
+  const { tasks, getTasks, deleteTask } = useTasks();
 
   useEffect(() => {
     getTasks();
@@ -17,10 +17,22 @@ const TasksPage = () => {
         <div className="row">
           {tasks.map((task) => {
             return (
-              <div className="col-4 gy-5" key={`grid-task-${task._id}`}>
+              <div
+                className="col-4 gy-5 position-relative"
+                key={`grid-task-${task._id}`}
+              >
                 <Link className="text-decoration-none" to={`/task/${task._id}`}>
                   <TaskBox task={task} key={`task-${task._id}`} />
                 </Link>
+                <img
+                  src="/trash-can.svg"
+                  className="trash-can bg-danger"
+                  onClick={async () => {
+                    await deleteTask(task._id);
+                    await getTasks()
+                  }}
+                  alt="delete button"
+                />
               </div>
             );
           })}
