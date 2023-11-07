@@ -1,6 +1,7 @@
 import { useTasks } from "../context/TasksContext";
 import TaskBox from "../components/TaskBox";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const TasksPage = () => {
   const { tasks, getTasks } = useTasks();
@@ -17,8 +18,9 @@ const TasksPage = () => {
           {tasks.map((task) => {
             return (
               <div className="col-4 gy-5" key={`grid-task-${task._id}`}>
-                <TaskBox task={task} key={`task-${task._id}`} />
-                <div className="text-danger text-break">{task._id}</div>
+                <Link to={`/task/${task._id}`}>
+                  <TaskBox task={task} key={`task-${task._id}`} />
+                </Link>
               </div>
             );
           })}
