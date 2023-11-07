@@ -22,7 +22,7 @@ function LoginPage() {
   });
 
   return (
-    <div class="page-container">
+    <div className="page-container">
       <h1 className="page-title">Sign in</h1>
       <UserForm
         id="login-usedr-form"

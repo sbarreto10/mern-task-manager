@@ -2,6 +2,10 @@ body{
   background-color: #111;
 }
 
+.navbar-logo {
+  height: 15vh;
+}
+
 .page-container {
   margin-top: 2em;
   display: flex;

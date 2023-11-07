@@ -22,6 +22,10 @@ export const AuthProvider = ({ children }) => {
   const [errors, setErrors] = useState([]);
   const [errorsOccurred, setErrorsOccurred] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [navLinks, setNavLinks] = useState([
+    { name: "Login", route: "/login" },
+    { name: "Signin", route: "/register" },
+  ]);
 
   const sign = (requestFunction) => async (user) => {
     try {
@@ -70,15 +74,39 @@ export const AuthProvider = ({ children }) => {
       } catch (error) {
         setIsAuthenticated(false);
         setUser(null);
-        setIsLoading(false)
+        setIsLoading(false);
       }
     };
     checkLogin();
   }, []);
 
+  useEffect(() => {
+    if (isAuthenticated)
+      setNavLinks([
+        { name: "Tasks", route: "/tasks" },
+        { name: "New Task", route: "/add-task" },
+        { name: "Profile", route: "/profile" },
+      ]);
+    else
+      setNavLinks([
+        { name: "Sign in", route: "/login" },
+        { name: "Sign up", route: "/register" },
+      ]);
+  }, [isAuthenticated]);
+
   return (
     <AuthContext.Provider
-      value={{ signup, signin, user, isAuthenticated, errors, setErrors, errorsOccurred, isLoading }}
+      value={{
+        signup,
+        signin,
+        user,
+        isAuthenticated,
+        errors,
+        setErrors,
+        errorsOccurred,
+        isLoading,
+        navLinks
+      }}
     >
       {children}
     </AuthContext.Provider>
