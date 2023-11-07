@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { useAuth } from "./AuthContext";
-import { getTaskRequest, createTaskRequest } from "../api/tasks.js";
+import { getTasksRequest, createTaskRequest } from "../api/tasks.js";
 
 export const TasksContext = createContext();
 
@@ -16,10 +16,18 @@ export const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const { errors, setErrors, errorsOccurred } = useAuth();
 
+  const getTasks = async () => {
+    try {
+      const res = await getTasksRequest();
+      setTasks(res.data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const createTask = async (task) => {
     try {
       const res = await createTaskRequest(task);
-      tasks
     } catch (err) {
       setErrors(err.response.data);
     }
@@ -27,7 +35,7 @@ export const TasksProvider = ({ children }) => {
 
   return (
     <TasksContext.Provider
-      value={{ tasks, createTask, errors, errorsOccurred }}
+      value={{ tasks, getTasks, createTask, errors, errorsOccurred }}
     >
       {children}
     </TasksContext.Provider>
