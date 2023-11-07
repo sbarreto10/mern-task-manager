@@ -1,11 +1,17 @@
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoute"
+
+import NavBar from "./components/NavBar";
+
+import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+
+import ProtectedRoute from "./ProtectedRoute";
 import TasksPage from "./pages/TasksPage";
 import TaskFormPage from "./pages/TaskFormPage";
 import ShowTaskPage from "./pages/ShowTaskPage";
 import ProfilePage from "./pages/ProfilePage";
+
 import { AuthProvider } from "./context/AuthContext";
 import { TasksProvider } from "./context/TasksContext";
 
@@ -14,18 +20,12 @@ function App() {
     <AuthProvider>
       <TasksProvider>
         <BrowserRouter>
+          <NavBar/>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <span className="badge rounded-pill text-bg-primary">
-                  Home Page
-                </span>
-              }
-            />
+            <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route element={<ProtectedRoute/>}>
+            <Route element={<ProtectedRoute />}>
               <Route path="/tasks" element={<TasksPage />} />
               <Route path="/add-task" element={<TaskFormPage />} />
               <Route path="/task/:id" element={<ShowTaskPage />} />

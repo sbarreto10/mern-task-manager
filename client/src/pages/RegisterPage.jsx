@@ -22,8 +22,8 @@ function RegisterPage() {
   });
 
   return (
-    <div id="page-container">
-      <h1 className="mb-4">Sign up</h1>
+    <div class="page-container">
+      <h1 className="page-title">Sign up</h1>
       <UserForm
         id="login-usedr-form"
         onSubmit={onSubmit}

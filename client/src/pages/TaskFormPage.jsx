@@ -15,8 +15,8 @@ function TaskFormPage() {
   });
 
   return (
-    <div id="page-container">
-      <h1 className="mb-4">New task</h1>
+    <div class="page-container">
+      <h1 className="page-title">New task</h1>
       <TaskForm
         id="new-task-form"
         onSubmit={onSubmit}

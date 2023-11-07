@@ -11,8 +11,8 @@ const TasksPage = () => {
   }, []);
 
   return (
-    <>
-      <h1>Tasks</h1>
+    <div className="page-container">
+      <h1 className="page-title">Your tasks</h1>
       <div className="container">
         <div className="row">
           {tasks.map((task) => {
@@ -38,7 +38,7 @@ const TasksPage = () => {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

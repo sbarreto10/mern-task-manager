@@ -22,8 +22,8 @@ function LoginPage() {
   });
 
   return (
-    <div id="page-container">
-      <h1 className="mb-4">Sign in</h1>
+    <div class="page-container">
+      <h1 className="page-title">Sign in</h1>
       <UserForm
         id="login-usedr-form"
         onSubmit={onSubmit}
