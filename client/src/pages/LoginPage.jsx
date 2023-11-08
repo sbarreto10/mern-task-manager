@@ -10,6 +10,10 @@ function LoginPage() {
   const { signin, isAuthenticated, errors: errors, errorsOccurred } = useAuth(); // Los valores del contexto
   const navigate = useNavigate();
 
+  useEffect(() => { 
+    document.title = "Sign in"
+   },[])
+
   useEffect(() => {
     if (isAuthenticated) navigate("/tasks");
   }, [isAuthenticated]);

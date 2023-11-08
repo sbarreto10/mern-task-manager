@@ -7,6 +7,10 @@ function TaskFormPage() {
   const { register, handleSubmit } = useForm();
   const { createTask } = useTasks();
 
+  useEffect(() => { 
+    document.title = "New task"
+   },[])
+
   const onSubmit = handleSubmit(async (values) => {
     await createTask({
       title: values.title.length ? values.title : undefined,
@@ -15,7 +19,7 @@ function TaskFormPage() {
   });
 
   return (
-    <div class="page-container">
+    <div className="page-container">
       <h1 className="page-title">New task</h1>
       <TaskForm
         id="new-task-form"

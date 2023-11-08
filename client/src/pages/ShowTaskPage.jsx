@@ -6,6 +6,10 @@ function ShowTaskPage() {
   const { taskShown, getTask } = useTasks();
   const { id } = useParams();
 
+  useEffect(() => { 
+    document.title = taskShown.title
+   },[taskShown])
+
   useEffect(() => {
     getTask(id);
   }, []);

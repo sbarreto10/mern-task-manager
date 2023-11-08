@@ -2,8 +2,12 @@ import { createContext, useState, useContext, useEffect } from "react";
 import {
   registerRequest,
   loginRequest,
-  verifyTokenRequest,
 } from "../api/auth.js";
+import {
+  getProfileRequest,
+  changeUsernameRequest,
+  changePasswordRequest
+} from "../api/profile.js"
 import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
@@ -18,6 +22,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
   const [errorsOccurred, setErrorsOccurred] = useState(false);
@@ -67,7 +72,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const res = await verifyTokenRequest(cookies.token);
+        const res = await getProfileRequest();
         setIsAuthenticated(true);
         setUser(res.data);
         setIsLoading(false);
@@ -77,6 +82,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(false);
       }
     };
+    
     checkLogin();
   }, []);
 

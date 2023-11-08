@@ -10,6 +10,10 @@ function RegisterPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Sign up";
+  }, []);
+
+  useEffect(() => {
     if (isAuthenticated) navigate("/tasks");
   }, [isAuthenticated]);
 

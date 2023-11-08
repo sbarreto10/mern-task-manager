@@ -2,12 +2,15 @@ import { useTasks } from "../context/TasksContext";
 import TaskBox from "../components/TaskBox";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const TasksPage = () => {
+  const { user } = useAuth()
   const { tasks, getTasks, deleteTask } = useTasks();
 
   useEffect(() => {
     getTasks();
+    document.title = user.username+" tasks"
   }, []);
 
   return (

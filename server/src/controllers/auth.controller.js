@@ -99,18 +99,10 @@ export const changePassword = async (req, res) => {
 };
 
 export const changeUsername = async (req, res) => {
-  const { username } = req.body;
+  const { newUsername } = req.body;
 
   const userFound = await User.findById(req.user.id);
-  const updatedUser = await userFound.updateOne({ username });
+  const updatedUser = await userFound.updateOne({ username: newUsername });
 
   res.status(200).json({ message: "Username updated" });
-};
-
-export const verifyToken = async (req, res) => {
-  return res.json({
-    id: req.user.id,
-    email: req.user.email,
-    username: req.user.username,
-  });
 };
