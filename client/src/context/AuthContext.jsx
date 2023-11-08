@@ -1,14 +1,10 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import {
-  registerRequest,
-  loginRequest,
-  logoutRequest
-} from "../api/auth.js";
+import { registerRequest, loginRequest, logoutRequest } from "../api/auth.js";
 import {
   getProfileRequest,
   changeUsernameRequest,
-  changePasswordRequest
-} from "../api/profile.js"
+  changePasswordRequest,
+} from "../api/profile.js";
 import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
@@ -23,7 +19,6 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
   const [errorsOccurred, setErrorsOccurred] = useState(false);
@@ -43,8 +38,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const changeProfileData = (requestFunction) => async (data) => {
+    try {
+      const res = await requestFunction(data);
+      console.log(res.data);
+    } catch (err) {
+      setErrors(err.response.data);
+    }
+  };
+
   const signup = sign(registerRequest);
   const signin = sign(loginRequest);
+  const changeUsername = changeProfileData(changeUsernameRequest);
+  const changePassword = changeProfileData(changePasswordRequest);
 
   useEffect(() => {
     if (Boolean(errors.length)) {
@@ -83,7 +89,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(false);
       }
     };
-    
+
     checkLogin();
   }, []);
 
@@ -93,7 +99,7 @@ export const AuthProvider = ({ children }) => {
         { name: "Tasks", route: "/tasks" },
         { name: "New Task", route: "/add-task" },
         { name: "Profile", route: "/profile" },
-        { name: "Logout", route: "", onClick: logoutRequest },
+        { name: "Logout", route: "/", onClick: logoutRequest },
       ]);
     else
       setNavLinks([
@@ -107,13 +113,15 @@ export const AuthProvider = ({ children }) => {
       value={{
         signup,
         signin,
+        changeUsername,
+        changePassword,
         user,
         isAuthenticated,
         errors,
         setErrors,
         errorsOccurred,
         isLoading,
-        navLinks
+        navLinks,
       }}
     >
       {children}

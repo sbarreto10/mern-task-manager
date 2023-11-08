@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "../assets/user-form.css";
 

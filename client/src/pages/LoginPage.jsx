@@ -29,7 +29,7 @@ function LoginPage() {
     <div className="page-container">
       <h1 className="page-title">Sign in</h1>
       <UserForm
-        id="login-usedr-form"
+        id="login-user-form"
         onSubmit={onSubmit}
         register={register}
         errors={errors}
