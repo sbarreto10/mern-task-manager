@@ -7,7 +7,7 @@ function NavBar() {
     <div className="navbar navbar-expand-lg navbar-dark bg-dark px-4 d-flex justify-content-between">
       <a className="navbar-brand d-flex align-items-center gap-4 py-0" href="/">
         <img
-          src="./tskmngr.svg"
+          src="/tskmngr.svg"
           className="navbar-logo"
           alt="TaskManager Logo"
         />
@@ -18,7 +18,7 @@ function NavBar() {
         {navLinks.map((link) => {
           return (
             <li className="nav-item active" key={`nav-link-${link.name}`}>
-              <a className="nav-link" href={link.route}>
+              <a className="nav-link" href={link.route} onClick={link.onClick}>
                 {link.name}
               </a>
             </li>

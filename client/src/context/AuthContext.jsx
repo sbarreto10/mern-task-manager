@@ -2,6 +2,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 import {
   registerRequest,
   loginRequest,
+  logoutRequest
 } from "../api/auth.js";
 import {
   getProfileRequest,
@@ -92,6 +93,7 @@ export const AuthProvider = ({ children }) => {
         { name: "Tasks", route: "/tasks" },
         { name: "New Task", route: "/add-task" },
         { name: "Profile", route: "/profile" },
+        { name: "Logout", route: "", onClick: logoutRequest },
       ]);
     else
       setNavLinks([
