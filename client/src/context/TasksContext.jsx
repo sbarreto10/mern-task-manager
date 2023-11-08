@@ -21,6 +21,7 @@ export const useTasks = () => {
 export const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [taskShown, setTaskShown] = useState([])
+  const [isLoadingTask, setIsLoadingTask] = useState(true);
   const { errors, setErrors, errorsOccurred } = useAuth();
 
   const getTasks = async () => {
@@ -33,11 +34,14 @@ export const TasksProvider = ({ children }) => {
   };
 
   const getTask = async (id) => {
+    setIsLoadingTask(true)
     try {
       const res = await getTaskRequest(id);
       setTaskShown(res.data);
+      setIsLoadingTask(false)
     } catch (err) {
       console.log(err);
+      setIsLoadingTask(false)
     }
   };
 
@@ -62,7 +66,7 @@ export const TasksProvider = ({ children }) => {
 
   return (
     <TasksContext.Provider
-      value={{ tasks, taskShown, getTasks, getTask, createTask, deleteTask, errors, errorsOccurred }}
+      value={{ tasks, taskShown, getTasks, getTask, createTask, deleteTask, errors, errorsOccurred, isLoadingTask }}
     >
       {children}
     </TasksContext.Provider>

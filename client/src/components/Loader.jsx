@@ -6,7 +6,7 @@ function Loader() {
   const [intervalId, setIntervalId] = useState(null);
   const {isLoading} = useAuth()
 
-  return <h1>Loading...</h1>;
+  return <h1 className='text-light'>Loading...</h1>;
 }
 
 export default Loader;
