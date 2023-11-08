@@ -32,7 +32,7 @@ function ProfilePage() {
     setChangeFormData({
       name: "username",
       fields: { newUsername: "text" },
-      onSubmit: onSubmitChangeUsername,
+      onSubmit: async (data) => { await onSubmitChangeUsername(data) },
     });
   };
 
@@ -40,7 +40,7 @@ function ProfilePage() {
     setChangeFormData({
       name: "password",
       fields: { password: "password", newPassword: "password" },
-      onSumbit: onSubmitChangePassword,
+      onSubmit: async (data) => { await onSubmitChangePassword(data) },
     });
   };
 
