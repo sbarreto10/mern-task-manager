@@ -32,7 +32,9 @@ function ProfilePage() {
     setChangeFormData({
       name: "username",
       fields: { newUsername: "text" },
-      onSubmit: async (data) => { await onSubmitChangeUsername(data) },
+      onSubmit: async (data) => {
+        await onSubmitChangeUsername(data);
+      },
     });
   };
 
@@ -40,7 +42,9 @@ function ProfilePage() {
     setChangeFormData({
       name: "password",
       fields: { password: "password", newPassword: "password" },
-      onSubmit: async (data) => { await onSubmitChangePassword(data) },
+      onSubmit: async (data) => {
+        await onSubmitChangePassword(data);
+      },
     });
   };
 
@@ -64,7 +68,7 @@ function ProfilePage() {
         </div>
       </div>
       {changeFormData != null && (
-        <div>
+        <div className="position-relative">
           <UserForm
             id={`change-${changeFormData.name}-form`}
             onSubmit={changeFormData.onSubmit}
@@ -74,6 +78,16 @@ function ProfilePage() {
             fields={changeFormData.fields}
             operation={`Change ${changeFormData.name}`}
           />
+          <div className="close-btn bg-warning position-absolute top-0 end-0 d-flex align-center">
+            <img
+              width={25}
+              src="/close-square.svg"
+              onClick={() => {
+                setChangeFormData(null);
+              }}
+              alt="Close button"
+            />
+          </div>
         </div>
       )}
     </div>

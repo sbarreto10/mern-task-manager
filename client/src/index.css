@@ -52,3 +52,13 @@ body{
   text-decoration: underline;
   cursor: pointer;
 }
+
+.close-btn img{
+  transform: scale(1.1);
+  transition: opacity 0.2s ;
+}
+
+.close-btn img:hover {
+  cursor: pointer;
+  opacity: 0.75;
+}
