@@ -10,7 +10,7 @@ import {
 import { authRequired } from "../middlewares/validateToken.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
 
-import { registerSchema, loginSchema } from "../schemas/auth.schema.js";
+import { registerSchema, loginSchema, changeUsernameSchema, changePasswordSchema } from "../schemas/auth.schema.js";
 
 const router = Router();
 
@@ -20,7 +20,7 @@ router.post("/logout", logout);
 
 router.get("/profile", authRequired, profile);
 
-router.put("/password", authRequired, changePassword);
-router.put("/username", authRequired, changeUsername);
+router.put("/password", authRequired, validateSchema(changePasswordSchema), changePassword);
+router.put("/username", authRequired, validateSchema(changeUsernameSchema), changeUsername);
 
 export default router;
