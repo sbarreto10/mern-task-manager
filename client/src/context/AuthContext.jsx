@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
   const [errorsOccurred, setErrorsOccurred] = useState(false);
+  const [successfulRequest, setSuccessfulRequest] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
   const [navLinks, setNavLinks] = useState([
     { name: "Login", route: "/login" },
@@ -41,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   const changeProfileData = (requestFunction) => async (data) => {
     try {
       const res = await requestFunction(data);
-      console.log(res.data);
+      setSuccessfulRequest(true)
     } catch (err) {
       setErrors(err.response.data);
     }
@@ -120,6 +121,7 @@ export const AuthProvider = ({ children }) => {
         errors,
         setErrors,
         errorsOccurred,
+        successfulRequest,
         isLoading,
         navLinks,
       }}

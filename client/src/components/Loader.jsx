@@ -6,7 +6,9 @@ function Loader() {
   const [intervalId, setIntervalId] = useState(null);
   const {isLoading} = useAuth()
 
-  return <h1 className='text-light'>Loading...</h1>;
+  return <div className='d-flex justify-content-center p-5'>
+    <h1 className='text-light'>Loading...</h1>
+  </div>;
 }
 
 export default Loader;

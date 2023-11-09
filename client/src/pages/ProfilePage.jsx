@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import UserForm from "../components/UserForm";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function ProfilePage() {
   const { register, handleSubmit } = useForm();
@@ -11,9 +13,14 @@ function ProfilePage() {
     changePassword,
     errors: errors,
     errorsOccurred,
+    successfulRequest,
   } = useAuth();
 
   const [changeFormData, setChangeFormData] = useState(null);
+  const [successfulRequestMessage, setSuccessfulRequestMessage] = useState(
+    Cookies.get().successfulRequestMessage
+  );
+  const navigate = useNavigate();
 
   const onSubmitChangeUsername = handleSubmit(async (values) => {
     await changeUsername({
@@ -50,10 +57,22 @@ function ProfilePage() {
 
   useEffect(() => {
     document.title = user.username + " profile";
+    if (Cookies.get().successfulRequestMessage) {
+      window.alert(Cookies.get().successfulRequestMessage);
+      Cookies.remove("successfulRequestMessage")
+    }
   }, []);
 
+  useEffect(() => {
+    if (successfulRequest) {
+      document.cookie =
+        "successfulRequestMessage=Profile data changed successfully";
+      window.location.reload();
+    }
+  }, [successfulRequest]);
+
   return (
-    <div className="page-container">
+    <div className="page-container position-relative">
       <h1 className="page-title">Profile</h1>
       <div className="profile-container mt-5 text-light d-flex flex-column align-items-center">
         <h1>{user.username}</h1>
