@@ -20,9 +20,15 @@ export const useTasks = () => {
 
 export const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
-  const [taskShown, setTaskShown] = useState([])
+  const [taskShown, setTaskShown] = useState([]);
   const [isLoadingTask, setIsLoadingTask] = useState(true);
-  const { errors, setErrors, errorsOccurred } = useAuth();
+  const [taskCreated, setTaskCreated] = useState(false)
+  const {
+    errors,
+    setErrors,
+    errorsOccurred,
+    setErrorsOccurred,
+  } = useAuth();
 
   const getTasks = async () => {
     try {
@@ -34,21 +40,23 @@ export const TasksProvider = ({ children }) => {
   };
 
   const getTask = async (id) => {
-    setIsLoadingTask(true)
+    setIsLoadingTask(true);
     try {
       const res = await getTaskRequest(id);
       setTaskShown(res.data);
-      setIsLoadingTask(false)
+      setIsLoadingTask(false);
     } catch (err) {
       console.log(err);
-      setIsLoadingTask(false)
+      setIsLoadingTask(false);
     }
   };
 
   const createTask = async (task) => {
     try {
       const res = await createTaskRequest(task);
-      console.log("Task created!")
+      setErrorsOccurred(false);
+      setErrors([]);
+      setTaskCreated(true)
     } catch (err) {
       setErrors(err.response.data);
     }
@@ -63,10 +71,26 @@ export const TasksProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => { 
+    if(taskCreated){
+      setTimeout(() => { 
+        setTaskCreated(false)
+       },750)
+    }
+   },[taskCreated])
 
   return (
     <TasksContext.Provider
-      value={{ tasks, taskShown, getTasks, getTask, createTask, deleteTask, errors, errorsOccurred, isLoadingTask }}
+      value={{
+        tasks,
+        taskShown,
+        getTasks,
+        getTask,
+        createTask,
+        deleteTask,
+        isLoadingTask,
+        taskCreated
+      }}
     >
       {children}
     </TasksContext.Provider>

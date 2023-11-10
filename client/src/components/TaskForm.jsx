@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { useTasks } from "../context/TasksContext";
 import "../assets/task-form.css";
+import { useAuth } from "../context/AuthContext";
+import { useTasks } from "../context/TasksContext";
 
 const TaskForm = ({ onSubmit, register, operation }) => {
-  const { errors, errorsOccurred } = useTasks()
+  const { errors, errorsOccurred } = useAuth();
+  const { taskCreated } = useTasks();
 
   return (
-    <div id="form-container">
+    <div className={`form-container ${taskCreated ? "form-fade-out" : ""}`}>
       <form className="gap-4" onSubmit={onSubmit}>
         <input
           className="shadow-none p-1"

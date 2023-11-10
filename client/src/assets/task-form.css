@@ -1,4 +1,4 @@
-#form-container {
+.form-container {
   width: 500px;
   height: fit-content;
   display: flex;
@@ -6,6 +6,15 @@
 
   border-left: solid 1px #eee;
   border-right: solid 1px #eee;
+  
+  transition: opacity 0.25s ease-in-out;
+}
+
+.form-fade-out {
+  opacity: 0;
+  transform: translateX(200px);
+  
+  transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
 }
 
 form {

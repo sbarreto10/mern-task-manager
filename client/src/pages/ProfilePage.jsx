@@ -17,10 +17,6 @@ function ProfilePage() {
   } = useAuth();
 
   const [changeFormData, setChangeFormData] = useState(null);
-  const [successfulRequestMessage, setSuccessfulRequestMessage] = useState(
-    Cookies.get().successfulRequestMessage
-  );
-  const navigate = useNavigate();
 
   const onSubmitChangeUsername = handleSubmit(async (values) => {
     await changeUsername({

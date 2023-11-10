@@ -121,7 +121,9 @@ export const AuthProvider = ({ children }) => {
         errors,
         setErrors,
         errorsOccurred,
+        setErrorsOccurred,
         successfulRequest,
+        setSuccessfulRequest,
         isLoading,
         navLinks,
       }}
