@@ -1,27 +1,28 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import UserForm from "../components/UserForm";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import "../assets/profile-page.css"
 
 function ProfilePage() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const {
     user,
     changeUsername,
     changePassword,
     errors: errors,
     errorsOccurred,
-    successfulRequest,
+    profileDataChanged
   } = useAuth();
 
   const [changeFormData, setChangeFormData] = useState(null);
+  const [usernameShowed, setUsernameShowed] = useState(user.username)
 
   const onSubmitChangeUsername = handleSubmit(async (values) => {
-    await changeUsername({
+    const newUsername = await changeUsername({
       newUsername: values.newUsername.length ? values.newUsername : undefined,
     });
+    if(newUsername) setUsernameShowed(newUsername)
   });
 
   const onSubmitChangePassword = handleSubmit(async (values) => {
@@ -53,25 +54,18 @@ function ProfilePage() {
 
   useEffect(() => {
     document.title = user.username + " profile";
-    if (Cookies.get().successfulRequestMessage) {
-      window.alert(Cookies.get().successfulRequestMessage);
-      Cookies.remove("successfulRequestMessage")
-    }
   }, []);
 
   useEffect(() => {
-    if (successfulRequest) {
-      document.cookie =
-        "successfulRequestMessage=Profile data changed successfully";
-      window.location.reload();
-    }
-  }, [successfulRequest]);
+    if(profileDataChanged[0]) reset()
+  }, [profileDataChanged]);
 
   return (
-    <div className="page-container position-relative">
+    <div className="page-container">
+      <div className={`profile-alert-message ${profileDataChanged[0] ? "message-in" : "message-out"} bg-warning text-dark position-absolute`}>{profileDataChanged[1]}</div>
       <h1 className="page-title">Profile</h1>
       <div className="profile-container mt-5 text-light d-flex flex-column align-items-center">
-        <h1>{user.username}</h1>
+        <h1>{usernameShowed}</h1>
         <div>email: {user.email}</div>
       </div>
       <div className="edit-profile">

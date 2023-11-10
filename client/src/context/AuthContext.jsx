@@ -22,12 +22,12 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
   const [errorsOccurred, setErrorsOccurred] = useState(false);
-  const [successfulRequest, setSuccessfulRequest] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
   const [navLinks, setNavLinks] = useState([
     { name: "Login", route: "/login" },
     { name: "Signin", route: "/register" },
   ]);
+  const [profileDataChanged, setProfileDataChanged] = useState([false, null]);
 
   const sign = (requestFunction) => async (user) => {
     try {
@@ -41,8 +41,12 @@ export const AuthProvider = ({ children }) => {
 
   const changeProfileData = (requestFunction) => async (data) => {
     try {
-      const res = await requestFunction(data);
-      setSuccessfulRequest(true)
+      await requestFunction(data);
+      if (data.newUsername) {
+        setProfileDataChanged([true, "Username changed successfully"]);
+        return data.newUsername;
+      }
+      if(data.newPassword) setProfileDataChanged([true, "Password changed successfully"]);
     } catch (err) {
       setErrors(err.response.data);
     }
@@ -109,6 +113,17 @@ export const AuthProvider = ({ children }) => {
       ]);
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    if (profileDataChanged[0]) {
+      const timeOutProfileDataChanged = setTimeout(() => {
+        setProfileDataChanged([false, profileDataChanged[1]]);
+      }, 4000);
+      return () => {
+        clearTimeout(timeOutProfileDataChanged);
+      };
+    }
+  }, [profileDataChanged]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -122,10 +137,9 @@ export const AuthProvider = ({ children }) => {
         setErrors,
         errorsOccurred,
         setErrorsOccurred,
-        successfulRequest,
-        setSuccessfulRequest,
         isLoading,
         navLinks,
+        profileDataChanged,
       }}
     >
       {children}
