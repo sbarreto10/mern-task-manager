@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import "../assets/task-form.css";
+import formStyles from "../assets/form.module.css";
 import { useAuth } from "../context/AuthContext";
 import { useTasks } from "../context/TasksContext";
 
@@ -9,17 +9,17 @@ const TaskForm = ({ onSubmit, register, operation }) => {
   const { taskCreated } = useTasks();
 
   return (
-    <div className={`form-container ${taskCreated ? "form-fade-out" : ""}`}>
-      <form className="gap-4" onSubmit={onSubmit}>
+    <div className={`${formStyles.formContainer} ${taskCreated ? formStyles.formFadeOut : ""}`}>
+      <form className={`${formStyles.form} gap-4`} onSubmit={onSubmit}>
         <input
-          className="shadow-none p-1"
+          className={`${formStyles.input} shadow-none p-1`}
           type="text"
           {...register("title")}
           placeholder="Title"
           key="input-task-title"
         />
         <textarea
-          className="shadow-none p-1"
+          className={`${formStyles.textarea} shadow-none p-1`}
           {...register("description")}
           placeholder="Description"
           key="input-task-description"
@@ -29,11 +29,15 @@ const TaskForm = ({ onSubmit, register, operation }) => {
       <CSSTransition
         in={errorsOccurred}
         timeout={1000}
-        classNames={"input-errors"}
+        mountOnEnter
+        unmountOnExit
+        classNames={{
+          exitActive: formStyles.inputErrorsExit
+        }}
       >
-        <div className="error-container">
+        <div className={formStyles.errorContainer}>
           {errors.map((err) => (
-            <div className="input-error" key={err}>
+            <div className={formStyles.inputError} key={err}>
               {err}
             </div>
           ))}
