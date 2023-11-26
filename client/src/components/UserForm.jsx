@@ -10,6 +10,7 @@ const UserForm = ({
   fields,
   operation,
 }) => {
+  log("AAAAAAAAAAAAAAAAAA")
   return (
     <div id="form-container">
       <form className="gap-4" onSubmit={onSubmit}>
