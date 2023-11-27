@@ -10,13 +10,12 @@ const UserForm = ({
   fields,
   operation,
 }) => {
-  log("AAAAAAAAAAAAAAAAAA")
   return (
-    <div id="form-container">
-      <form className="gap-4" onSubmit={onSubmit}>
+    <div class={formStyles.formContainer}>
+      <form className={`${formStyles.form} gap-4`} onSubmit={onSubmit}>
         {Object.keys(fields).map((key) => (
           <input
-            className="shadow-none p-1"
+            className={`${formStyles.input} shadow-none p-1`}
             type={fields[key]}
             {...register(key)}
             placeholder={key}
@@ -28,11 +27,13 @@ const UserForm = ({
       <CSSTransition
         in={errorsOccurred}
         timeout={1000}
-        classNames={"input-errors"}
+        classNames={{
+          exitActive: formStyles.inputErrorsExit
+        }}
       >
-        <div className="error-container">
+        <div className={formStyles.errorContainer}>
           {errors.map((err) => (
-            <div className="input-error" key={err}>
+            <div className={formStyles.inputError} key={err}>
               {err}
             </div>
           ))}
