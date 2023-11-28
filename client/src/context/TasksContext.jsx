@@ -75,7 +75,7 @@ export const TasksProvider = ({ children }) => {
                return _transitions;
             });
             getTasks()
-         }, 1000);
+         }, 500);
 
          return res.data;
       } catch (err) {

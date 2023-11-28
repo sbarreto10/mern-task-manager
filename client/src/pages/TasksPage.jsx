@@ -18,11 +18,19 @@ const TasksPage = ({ bscol = 4 }) => {
    const handleDeleteTask = async (id) => {
       //Handle animation
       const taskBox = document.getElementById(`grid-task-${id}`);
-      let t = 0;
-      setInterval(() => {
-         taskBox.style.transform = `translate(${t}px,${0.06*t*t-5*t}px) rotate(${10*t}deg) scale(${1/(t+1)})`;
+      let [t, flyAmount, flySide] = [
+         0,
+         Math.random() + 2,
+         Math.floor(2 * Math.random()),
+      ];
+      flySide = flySide ? flySide : -1;
+      const deleteAnimation = setInterval(() => {
+         taskBox.style.transform = `translate(${flySide * t}px,${
+            flyAmount * (0.2 * t * t - 5 * t)
+         }px) rotate(${5 * flySide * t}deg) scale(${-0.005 * t + 1})`;
          t += 1;
-      }, 10);
+      }, 15);
+
       // Handle delete
       await deleteTask(id);
    };
