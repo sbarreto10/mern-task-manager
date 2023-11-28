@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import TaskForm from "../components/TaskForm";
 import { useAuth } from "../context/AuthContext";
 
-function TaskFormPage() {
+function NewTaskPage() {
   const { register, handleSubmit } = useForm();
   const { createTask } = useTasks();
 
@@ -32,4 +32,4 @@ function TaskFormPage() {
   );
 }
 
-export default TaskFormPage;
+export default NewTaskPage;

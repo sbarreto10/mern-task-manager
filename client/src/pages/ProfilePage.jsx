@@ -60,6 +60,12 @@ function ProfilePage() {
     if(profileDataChanged[0]) reset()
   }, [profileDataChanged]);
 
+  useEffect(() => { 
+    document.addEventListener("keydown", (event) => { 
+      if(event.key == "Escape") setChangeFormData(null)
+     })
+   }, [])
+
   return (
     <div className="page-container">
       <div className={`profile-alert-message ${profileDataChanged[0] ? "message-in" : "message-out"} bg-warning text-dark position-absolute`}>{profileDataChanged[1]}</div>

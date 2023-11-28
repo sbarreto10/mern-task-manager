@@ -24,7 +24,7 @@ const TaskForm = ({ onSubmit, register, operation }) => {
           placeholder="Description"
           key="input-task-description"
         />
-        <button type="submit">{operation}</button>
+        <button className={formStyles["button"]} type="submit">{operation}</button>
       </form>
       <CSSTransition
         in={errorsOccurred}

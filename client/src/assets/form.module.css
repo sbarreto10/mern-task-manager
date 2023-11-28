@@ -2,25 +2,30 @@
    width: 500px;
    height: fit-content;
    display: flex;
-   align-items: center;
+   background-color: rgba(0,0,0,0.25);
    border-left: solid 1px #eee;
    border-right: solid 1px #eee;
+   padding: 1em;
+   gap: 1em;
+   transition: opacity 0.15s ease-in-out;
 }
 
 .formFadeOut {
    opacity: 0;
-   transform: translateX(200px);
-   transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+   transform: translateX(800px);
+   transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
  }
 
 .form {
    width: 50%;
-   margin-top: 5%;
    display: flex;
    flex-direction: column;
-   align-items: center;
+   align-items: left;
    justify-content: center;
-   transform: scale(0.75);
+}
+
+.form>* {
+   height: 60px;
 }
 
 .input,
@@ -33,7 +38,6 @@
 }
 
 .textarea {
-   padding: 4px;
    color: #eee;
    background-color: transparent;
    border: solid 1px #eee;
@@ -59,15 +63,18 @@
 
 .errorContainer {
    display: flex;
+   flex: 1;
    flex-direction: column;
+   justify-content: center;
+   align-content: center;
    max-width: 50%;
-   gap: 0.5rem;
-   padding-right: 1.75em;
+   gap: 0.75rem;
 }
 
 .inputError {
+   text-align: center;
    color: red;
-   font-size: 0.75em;
+   font-size: 1em;
    opacity: 1;
    transition: opacity 1s ease;
 }
@@ -75,4 +82,16 @@
 .inputErrorsExit {
    opacity: 0;
    transition: opacity 0.5s;
+}
+
+.button {
+   width: fit-content; 
+   padding-inline: 1.5em;
+   background: linear-gradient(45deg, #dc3545 -30%, #ffc107 130%);
+   border: none;
+   transition: filter 0.25s;
+}
+
+.button:hover{
+   filter: invert(1);
 }

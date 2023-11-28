@@ -8,7 +8,7 @@ import LoginPage from "./pages/LoginPage";
 
 import ProtectedRoute from "./ProtectedRoute";
 import TasksPage from "./pages/TasksPage";
-import TaskFormPage from "./pages/TaskFormPage";
+import NewTaskPage from "./pages/NewTaskPage";
 import ShowTaskPage from "./pages/ShowTaskPage";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -27,7 +27,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/tasks" element={<TasksPage />} />
-              <Route path="/add-task" element={<TaskFormPage />} />
+              <Route path="/add-task" element={<NewTaskPage />} />
               <Route path="/task/:id" element={<ShowTaskPage />} />
               <Route path="/profile" element={<ProfilePage />} />
             </Route>

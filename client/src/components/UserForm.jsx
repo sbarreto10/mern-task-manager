@@ -11,7 +11,7 @@ const UserForm = ({
   operation,
 }) => {
   return (
-    <div class={formStyles.formContainer}>
+    <div className={formStyles.formContainer}>
       <form className={`${formStyles.form} gap-4`} onSubmit={onSubmit}>
         {Object.keys(fields).map((key) => (
           <input
@@ -22,7 +22,7 @@ const UserForm = ({
             key={`input-${key}`}
           />
         ))}
-        <button type="submit">{operation}</button>
+        <button className={formStyles["button"]} type="submit">{operation}</button>
       </form>
       <CSSTransition
         in={errorsOccurred}
