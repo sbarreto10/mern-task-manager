@@ -1,83 +1,82 @@
 body {
-  background-color: #111;
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
+   background-color: #111;
+   overflow-x: hidden;
+   position: relative;
+   min-height: 100vh;
 }
 
 .page-container {
-  min-width: 100vw;
-  margin-top: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  color: #eee;
+   min-width: 100vw;
+   margin-top: 2em;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 20px;
+   color: #eee;
 }
 
 .page-title {
-  font-family: Arial, Helvetica, sans-serif;
-  color: rgb(210, 210, 0);
+   font-family: Arial, Helvetica, sans-serif;
+   color: rgb(210, 210, 0);
 }
 
 .link-to {
-  color: #eee;
+   color: #eee;
 }
 
 .trash-can {
-  position: absolute;
-  right: 1em;
-  bottom: 0.25em;
-  padding-block: 0.25em;
-  border-radius: 10%;
-  width: 1.25em;
-  transition: transform 0.25s;
+   position: absolute;
+   right: 1em;
+   bottom: 0.25em;
+   padding-block: 0.25em;
+   border-radius: 10%;
+   width: 1.25em;
+   transition: transform 0.25s;
 }
 
 .trash-can:hover {
-  cursor: pointer;
-  transform: scale(1.25);
+   cursor: pointer;
+   transform: scale(1.25);
 }
 
 .edit-profile {
-  width: 50vw;
-  padding-block: 2em;
-  display: flex;
-  justify-content: space-around;
+   width: 50vw;
+   padding-block: 2em;
+   display: flex;
+   justify-content: space-around;
 }
 
 .edit-profile-btn:hover {
-  text-decoration: underline;
-  cursor: pointer;
+   text-decoration: underline;
+   cursor: pointer;
 }
 
 .close-btn img {
-  transform: scale(1.1);
-  transition: opacity 0.2s;
+   transform: scale(1.1);
+   transition: opacity 0.2s;
 }
 
 .close-btn img:hover {
-  cursor: pointer;
-  opacity: 0.75;
+   cursor: pointer;
+   opacity: 0.75;
 }
 
-
-
 .navbar-logo {
-  height: 4em;
+   height: 4em;
 }
 
 @media (min-width: 992px) {
-  .navbar-expand-lg .navbar-collapse {
-    justify-content: end;
-  }
+   .navbar-expand-lg .navbar-collapse {
+      justify-content: end;
+   }
 
-  .navbar-nav {
-    width: 75%;
-    justify-content: space-around;
-  }
+   .navbar-nav {
+      width: 75%;
+      justify-content: space-around;
+   }
 
-  .nav-item {
-    text-wrap: nowrap;
-    font-size: large;
+   .nav-item {
+      text-wrap: nowrap;
+      font-size: large;
+   }
 }

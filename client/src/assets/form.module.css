@@ -1,11 +1,11 @@
 .formContainer {
-   width: 500px;
+   width: 600px;
    height: fit-content;
    display: flex;
    background-color: rgba(0,0,0,0.25);
    border-left: solid 1px #eee;
    border-right: solid 1px #eee;
-   padding: 1em;
+   padding: 1.5em;
    gap: 1em;
    transition: opacity 0.15s ease-in-out;
 }
@@ -17,7 +17,7 @@
  }
 
 .form {
-   width: 50%;
+   width: 40%;
    display: flex;
    flex-direction: column;
    align-items: left;
@@ -25,12 +25,12 @@
 }
 
 .form>* {
-   height: 60px;
+   height: 50px;
 }
 
 .input,
 .textarea {
-   padding: 4px;
+   padding: 4px 4px 0 4px;
    color: #eee;
    background-color: transparent;
    border: hidden;
@@ -38,6 +38,7 @@
 }
 
 .textarea {
+   min-height: 5em;
    color: #eee;
    background-color: transparent;
    border: solid 1px #eee;
@@ -89,6 +90,7 @@
    padding-inline: 1.5em;
    background: linear-gradient(45deg, #dc3545 -30%, #ffc107 130%);
    border: none;
+   user-select: none;
    transition: filter 0.25s;
 }
 

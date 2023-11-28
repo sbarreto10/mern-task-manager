@@ -37,7 +37,7 @@ function LoginPage() {
         fields={{ email: "text", password: "password" }}
         operation="Sign in"
       />
-      <span className="link-to">
+      <span className="link-to my-3">
         Don't have an account? <Link to="/register">Sign up!</Link>
       </span>
     </div>

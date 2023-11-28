@@ -74,18 +74,15 @@ export const TasksProvider = ({ children }) => {
                delete _transitions[id];
                return _transitions;
             });
-         }, 200);
+            getTasks()
+         }, 1000);
 
          return res.data;
       } catch (err) {
          console.log(err);
       }
    };
-
-   useEffect(() => {
-      console.log(taskDeleteTransitions);
-   }, [taskDeleteTransitions]);
-
+   
    useEffect(() => {
       if (taskCreated) {
          setTimeout(() => {

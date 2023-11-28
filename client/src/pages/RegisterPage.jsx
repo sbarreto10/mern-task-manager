@@ -37,7 +37,7 @@ function RegisterPage() {
         fields={{ username: "text", email: "text", password: "password" }}
         operation="Sign up"
       />
-      <span className="link-to">
+      <span className="link-to my-3">
         Already have an account? <Link to="/login">Sign in!</Link>
       </span>
     </div>
