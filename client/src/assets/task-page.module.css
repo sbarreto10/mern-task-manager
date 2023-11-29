@@ -11,11 +11,25 @@
    border-right: solid 1px #eee;
 }
 
-.task-box-container {
-   transition: opacity 1s;
+.task-container:hover {
+  cursor: pointer;
+  animation: scaleTaskSelected ease-in-out 0.2s;
 }
 
-.task-box-title {
+@keyframes scaleTaskSelected {
+  0% {
+    transform: scale(1)
+  }
+  25%{
+    transform: scale(0.95)
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+
+.task-box-container {
+   transition: opacity 0.5s;
 }
 
 .task-box-body {
@@ -32,4 +46,20 @@
    height: 50%;
    background: linear-gradient(0deg, #222222 25%, transparent 100%);
    bottom: 0;
+}
+
+.trash-can {
+  position: absolute;
+  right: 5px;
+  bottom: 0.25em;
+  padding-block: 0.25em;
+  border-radius: 10%;
+  width: 1.25em;
+  z-index: 1;
+  transition: transform 0.25s;
+}
+
+.trash-can:hover {
+  cursor: pointer;
+  transform: scale(1.25);
 }
