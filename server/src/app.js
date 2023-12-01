@@ -4,11 +4,14 @@ import authRoutes from "./routes/auth.routes.js";
 import taskRoutes from "./routes/task.routes.js";
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import { config } from "dotenv";
+
+config();
 
 const app = express();
 
 app.use(cors({
-   origin: "http://localhost:5173",
+   origin: process.env.CORS_ORIGIN,
    credentials: true
 }))
 app.use(morgan("dev")); // para visualizar las peticiones

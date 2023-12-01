@@ -7,9 +7,7 @@ import { useAuth } from "../context/AuthContext";
 const TasksPage = ({ bscol = 4 }) => {
    const { user } = useAuth();
    const { tasks, getTasks, deleteTask, taskDeleteTransitions } = useTasks();
-   const [deletedIndex, setDeletedIndex] = useState(null);
    const [tasksLoaded, setTasksLoaded] = useState(false);
-   const taskCols = 12 / bscol;
 
    useEffect(() => {
       getTasks();
@@ -24,10 +22,6 @@ const TasksPage = ({ bscol = 4 }) => {
          // some shit
       }
    }, [tasks]);
-
-   useEffect(() => {
-      console.log(deletedIndex);
-   }, [deletedIndex]);
 
    const handleDeleteAnimation = (box) => {
       let [t, flyAmount, flySide] = [
