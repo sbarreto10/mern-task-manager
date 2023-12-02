@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }) => {
       const res = await requestFunction(user);
       setUser(res.data);
       setIsAuthenticated(true);
+      console.log(res);
     } catch (err) {
       setErrors(err.response.data);
     }
@@ -77,6 +78,7 @@ export const AuthProvider = ({ children }) => {
     const checkLogin = async () => {
       const cookies = Cookies.get();
       if (!cookies.token) {
+        console.log("THERES NO COOKIES");
         setIsAuthenticated(false);
         setUser(null);
         setIsLoading(false);
@@ -125,10 +127,10 @@ export const AuthProvider = ({ children }) => {
     }
   }, [profileDataChanged]);
 
-  useEffect(() => { 
-    console.log("user changed:");
-    console.log(user);
-   },[user])
+  // useEffect(() => { 
+  //   console.log("user changed:");
+  //   console.log(user);
+  //  },[user])
 
   return (
     <AuthContext.Provider
