@@ -14,10 +14,6 @@ import { registerSchema, loginSchema, changeUsernameSchema, changePasswordSchema
 
 const router = Router();
 
-router.get("/okidoki", (req, res) => {
-  res.sendStatus(200)
-})
-
 router.post("/register", validateSchema(registerSchema), register);
 router.post("/login", validateSchema(loginSchema), login);
 router.post("/logout", logout);

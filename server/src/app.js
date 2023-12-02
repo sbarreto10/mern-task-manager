@@ -10,6 +10,11 @@ config();
 
 const app = express();
 
+// HEALTH CHECK
+app.get("/okidoki", (req, res) => {
+   res.sendStatus(200)
+ })
+
 app.use(cors({
    origin: process.env.CORS_ORIGIN,
    credentials: true
@@ -20,5 +25,6 @@ app.use(cookieParser())
 
 app.use("/api", authRoutes); // todas las rutas de authRoutes empezaran con /api
 app.use("/api", taskRoutes);
+
 
 export default app;
