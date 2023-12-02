@@ -82,6 +82,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(false);
         return;
       }else{
+        console.log("WTF");
         document.cookie = `token=${cookies.token};path="/";`
       }
 
