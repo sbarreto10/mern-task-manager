@@ -14,7 +14,7 @@ import { registerSchema, loginSchema, changeUsernameSchema, changePasswordSchema
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get("/okidoki", (req, res) => {
   res.sendStatus(200)
 })
 
