@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      Cookies.set("token", cookies.token, { sameSite: "none", secure: true })
+      Cookies.set("asdasdasd", "asdasdasdas", { sameSite: "none", secure: true })
 
       try {
         const res = await getProfileRequest();
