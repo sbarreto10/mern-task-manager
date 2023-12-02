@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      Cookies.set("asdasdasd", "asdasdasdas", { sameSite: "none", secure: true })
+      console.log("REALLY WTF IS HPNING HERE");
 
       try {
         const res = await getProfileRequest();
