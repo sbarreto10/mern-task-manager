@@ -75,7 +75,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkLogin = async () => {
-      console.log("WEWEWEWEWEWEWEWEWE");
       const cookies = Cookies.get();
       if (!cookies.token) {
         setIsAuthenticated(false);
@@ -83,6 +82,8 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(false);
         return;
       }
+
+      Cookies.set("token", cookies.token, { sameSite: "none", secure: true })
 
       try {
         const res = await getProfileRequest();
