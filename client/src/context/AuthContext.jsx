@@ -83,14 +83,13 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      console.log("REALLY WTF IS HPNING HERE");
-
       try {
         const res = await getProfileRequest();
         setIsAuthenticated(true);
         setUser(res.data);
         setIsLoading(false);
       } catch (error) {
+        console.log(error);
         setIsAuthenticated(false);
         setUser(null);
         setIsLoading(false);
@@ -125,6 +124,11 @@ export const AuthProvider = ({ children }) => {
       };
     }
   }, [profileDataChanged]);
+
+  useEffect(() => { 
+    console.log("user changed:");
+    console.log(user);
+   },[user])
 
   return (
     <AuthContext.Provider

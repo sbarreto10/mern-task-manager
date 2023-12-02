@@ -4,13 +4,6 @@ import { createAccessToken } from "../libs/jwt.js";
 
 export const register = async (req, res) => {
    const { username, email, password } = req.body;
-   const cookieConfig = {
-      sameSite: "none",
-      secure: true,
-      path: "/",
-      maxAge: 60000,
-      httpOnly: true,
-   };
 
    try {
       const userFound = await User.findOne({ email });
@@ -28,7 +21,11 @@ export const register = async (req, res) => {
       const userSaved = await newUser.save();
 
       const token = await createAccessToken({ id: userSaved.id });
-      res.cookie("token", token, cookieConfig);
+      res.cookie("token", token, {
+         sameSite: "none",
+         secure: true,
+         path: "/"
+      });
 
       res.json({
          id: userSaved.id,
@@ -53,7 +50,11 @@ export const login = async (req, res) => {
       if (!isMatch) return res.status(404).json(["Invalid password"]);
 
       const token = await createAccessToken({ id: userFound.id });
-      res.cookie("token", token, cookieConfig);
+      res.cookie("token", token, {
+         sameSite: "none",
+         secure: true,
+         path: "/"
+      });
 
       res.json({
          id: userFound.id,
