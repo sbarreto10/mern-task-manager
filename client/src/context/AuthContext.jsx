@@ -81,6 +81,8 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setIsLoading(false);
         return;
+      }else{
+        document.cookie = `token=${cookies.token};path="/";`
       }
 
       try {
