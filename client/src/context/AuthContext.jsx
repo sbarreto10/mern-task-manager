@@ -94,6 +94,7 @@ export const AuthProvider = ({ children }) => {
    };
 
    useEffect(() => {
+      console.log("CHECKING AUTH");
       const checkLogin = async () => {
          try {
             if (!localStorage.getItem("token")) {
@@ -125,8 +126,8 @@ export const AuthProvider = ({ children }) => {
                name: "Logout",
                route: "/",
                onClick: () => {
-                localStorage.removeItem("token");
                   logoutRequest();
+                  localStorage.removeItem("token");
                },
             },
          ]);
@@ -147,11 +148,6 @@ export const AuthProvider = ({ children }) => {
          };
       }
    }, [profileDataChanged]);
-
-   // useEffect(() => {
-   //   console.log("user changed:");
-   //   console.log(user);
-   //  },[user])
 
    return (
       <AuthContext.Provider
