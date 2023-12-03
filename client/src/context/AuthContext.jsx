@@ -79,22 +79,33 @@ export const AuthProvider = ({ children }) => {
       }
    }, [errors]);
 
+   const handleErr = (err) => {
+      console.log(err);
+      setIsAuthenticated(false);
+      setUser(null);
+      setIsLoading(false);
+   };
+
+   const handleProfileRequest = async () => {
+      const res = await getProfileRequest();
+      setIsAuthenticated(true);
+      setUser(res.data);
+      setIsLoading(false);
+   };
+
    useEffect(() => {
       const checkLogin = async () => {
-         const handleErr = (err) => {
-            console.log(err);
-            setIsAuthenticated(false);
-            setUser(null);
-            setIsLoading(false);
-         };
-
          try {
-            const authRes = await authRequest();
-            if (authRes.data.token) {
-                const profileRes = await getProfileRequest();
-                setIsAuthenticated(true);
-                setUser(profileRes.data);
-                setIsLoading(false);
+            if (!localStorage.getItem("token")) {
+               const res = await authRequest();
+               if (res.data.token) {
+                  localStorage.setItem("token", res.data.token);
+                  await handleProfileRequest();
+               } else {
+                  handleErr(res.data);
+               }
+            } else {
+               await handleProfileRequest();
             }
          } catch (err) {
             handleErr(err);
@@ -110,7 +121,10 @@ export const AuthProvider = ({ children }) => {
             { name: "Tasks", route: "/tasks" },
             { name: "New Task", route: "/add-task" },
             { name: "Profile", route: "/profile" },
-            { name: "Logout", route: "/", onClick: logoutRequest },
+            { name: "Logout", route: "/", onClick: () => { 
+              localStorage.removeItem("token")
+              logoutRequest()
+             }  },
          ]);
       else
          setNavLinks([
@@ -129,11 +143,6 @@ export const AuthProvider = ({ children }) => {
          };
       }
    }, [profileDataChanged]);
-
-   // useEffect(() => {
-   //   console.log("user changed:");
-   //   console.log(user);
-   //  },[user])
 
    return (
       <AuthContext.Provider
