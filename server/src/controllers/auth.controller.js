@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { createAccessToken } from "../libs/jwt.js";
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
    const { username, email, password } = req.body;
@@ -21,11 +22,7 @@ export const register = async (req, res) => {
       const userSaved = await newUser.save();
 
       const token = await createAccessToken({ id: userSaved.id });
-      res.cookie("token", token, {
-         sameSite: "none",
-         secure: true,
-         path: "/"
-      });
+      res.cookie("token", token);
 
       res.json({
          id: userSaved.id,
@@ -50,11 +47,7 @@ export const login = async (req, res) => {
       if (!isMatch) return res.status(404).json(["Invalid password"]);
 
       const token = await createAccessToken({ id: userFound.id });
-      res.cookie("token", token, {
-         sameSite: "none",
-         secure: true,
-         path: "/"
-      });
+      res.cookie("token", token);
 
       res.json({
          id: userFound.id,
@@ -70,10 +63,7 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
    res.cookie("token", "", {
-      sameSite: "none",
-      secure: true,
-      expires: new Date(0),
-      path: "/",
+      expires: new Date(0)
    });
    return res.sendStatus(200);
 };
@@ -89,6 +79,20 @@ export const profile = async (req, res) => {
       updatedAt: userFound.updatedAt,
    });
 };
+
+export const verifyToken = async (req, res) => {
+   const { token } = req.cookies;
+
+   if (!token)
+      return res
+         .status(200)
+         .json({ message: "No token found in cookies" });
+
+   jwt.verify(token, process.env.TOKEN_SECRET, (err, decodedUser) => {
+      if (err) return res.status(401).json({ message: "Invalid token" });
+      return res.status(200).json({message: "Verified token", token})
+   });
+}
 
 export const changePassword = async (req, res) => {
    const { password, newPassword } = req.body;
