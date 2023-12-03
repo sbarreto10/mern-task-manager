@@ -13,9 +13,3 @@ export const authRequired = (req, res, next) => {
    });
    next();
 };
-
-export const logCookies = (req, res, next) => {
-   console.log(`Cookies for ${req.url}:`);
-   console.log(req.cookies);
-   next();
-};

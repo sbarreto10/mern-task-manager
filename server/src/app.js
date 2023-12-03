@@ -5,7 +5,6 @@ import taskRoutes from "./routes/task.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { config } from "dotenv";
-import { logCookies } from "./middlewares/validateToken.js";
 
 config();
 
