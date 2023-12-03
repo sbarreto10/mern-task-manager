@@ -125,6 +125,7 @@ export const AuthProvider = ({ children }) => {
                name: "Logout",
                route: "/",
                onClick: async () => {
+                  setIsAuthenticated(false)
                   await logoutRequest();
                   localStorage.removeItem("token");
                },
