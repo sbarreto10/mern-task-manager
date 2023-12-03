@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }) => {
             { name: "Profile", route: "/profile" },
             {
                name: "Logout",
-               route: "/",
+               route: "",
                onClick: () => {
                   logoutRequest();
                   localStorage.removeItem("token");
