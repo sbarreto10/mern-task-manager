@@ -11,6 +11,11 @@ export const authRequired = (req, res, next) => {
       if (err) return res.status(401).json({ message: "Invalid token" });
       req.user = decodedUser;
    });
+   next();
+};
 
+export const logCookies = (req, res, next) => {
+   console.log(`Cookies for ${req.url}:`);
+   console.log(req.cookies);
    next();
 };

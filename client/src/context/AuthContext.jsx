@@ -94,7 +94,6 @@ export const AuthProvider = ({ children }) => {
    };
 
    useEffect(() => {
-      console.log("CHECKING AUTH");
       const checkLogin = async () => {
          try {
             if (!localStorage.getItem("token")) {
