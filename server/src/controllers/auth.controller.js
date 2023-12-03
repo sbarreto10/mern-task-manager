@@ -72,6 +72,7 @@ export const logout = async (req, res) => {
       secure: true,
       path:"/"
    });
+   console.log(req.cookies);
    // res.end()
    return res.sendStatus(200);
 };
