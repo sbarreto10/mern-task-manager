@@ -99,8 +99,8 @@ export const AuthProvider = ({ children }) => {
             if (!localStorage.getItem("token")) {
                const res = await authRequest();
                if (res.data.token) {
-                  localStorage.setItem("token", res.data.token);
                   await handleProfileRequest();
+                  localStorage.setItem("token", res.data.token);
                } else {
                   handleErr(res.data);
                }
@@ -121,10 +121,14 @@ export const AuthProvider = ({ children }) => {
             { name: "Tasks", route: "/tasks" },
             { name: "New Task", route: "/add-task" },
             { name: "Profile", route: "/profile" },
-            { name: "Logout", route: "/", onClick: () => { 
-              localStorage.removeItem("token")
-              logoutRequest()
-             }  },
+            {
+               name: "Logout",
+               route: "/",
+               onClick: () => {
+                  logoutRequest();
+                  localStorage.removeItem("token");
+               },
+            },
          ]);
       else
          setNavLinks([
@@ -143,6 +147,11 @@ export const AuthProvider = ({ children }) => {
          };
       }
    }, [profileDataChanged]);
+
+   // useEffect(() => {
+   //   console.log("user changed:");
+   //   console.log(user);
+   //  },[user])
 
    return (
       <AuthContext.Provider
