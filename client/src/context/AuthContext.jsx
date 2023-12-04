@@ -33,10 +33,9 @@ export const AuthProvider = ({ children }) => {
       { name: "Login", route: "/login" },
       { name: "Signin", route: "/register" },
    ]);
+   const [logoutClicked, setLogoutClicked] = useState(false)
    const [profileDataChanged, setProfileDataChanged] = useState([false, null]);
-   const navigate = useNavigate();
-
-   const handleNavigate = (route) => navigate(route);
+   const navigate = useNavigate()
 
    const sign = (requestFunction) => async (user) => {
       try {
@@ -129,10 +128,10 @@ export const AuthProvider = ({ children }) => {
                name: "Logout",
                route: "/",
                onClick: (event) => {
-                  event.preventDefault();
+                  event.preventDefault()
                   logoutRequest();
                   localStorage.removeItem("token");
-                  handleNavigate("/");
+                  setLogoutClicked(true)
                },
             },
          ]);
@@ -142,6 +141,10 @@ export const AuthProvider = ({ children }) => {
             { name: "Sign up", route: "/register" },
          ]);
    }, [isAuthenticated]);
+
+   useEffect(() => {
+     if(logoutClicked) navigate("/") 
+   }, [logoutClicked])
 
    useEffect(() => {
       if (profileDataChanged[0]) {
