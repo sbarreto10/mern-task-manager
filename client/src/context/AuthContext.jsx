@@ -11,7 +11,6 @@ import {
    changePasswordRequest,
 } from "../api/profile.js";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -34,7 +33,6 @@ export const AuthProvider = ({ children }) => {
       { name: "Signin", route: "/register" },
    ]);
    const [profileDataChanged, setProfileDataChanged] = useState([false, null]);
-   const navigate = useNavigate();
 
    const sign = (requestFunction) => async (user) => {
       try {
@@ -127,10 +125,10 @@ export const AuthProvider = ({ children }) => {
                name: "Logout",
                route: "/",
                onClick: (event) => {
-                  event.preventDefault();
+                  event.preventDefault()
                   logoutRequest();
                   localStorage.removeItem("token");
-                  navigate("/")
+                  
                },
             },
          ]);
