@@ -129,6 +129,7 @@ export const AuthProvider = ({ children }) => {
                   console.log(event);
                   logoutRequest();
                   localStorage.removeItem("token");
+                  location.reload();
                },
             },
          ]);
