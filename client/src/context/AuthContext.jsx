@@ -130,7 +130,7 @@ export const AuthProvider = ({ children }) => {
                   event.preventDefault();
                   logoutRequest();
                   localStorage.removeItem("token");
-                  navigate("/");
+                  navigate("/")
                },
             },
          ]);
