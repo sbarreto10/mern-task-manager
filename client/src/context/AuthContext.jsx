@@ -125,11 +125,10 @@ export const AuthProvider = ({ children }) => {
                name: "Logout",
                route: "/",
                onClick: (event) => {
+                  event.preventDefault();
                   console.log(event);
-                  event.preventDefault()
                   logoutRequest();
                   localStorage.removeItem("token");
-                  location.reload()
                },
             },
          ]);
