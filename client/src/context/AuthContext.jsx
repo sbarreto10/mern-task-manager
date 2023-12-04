@@ -11,7 +11,6 @@ import {
    changePasswordRequest,
 } from "../api/profile.js";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -33,9 +32,7 @@ export const AuthProvider = ({ children }) => {
       { name: "Login", route: "/login" },
       { name: "Signin", route: "/register" },
    ]);
-   const [logoutClicked, setLogoutClicked] = useState(false)
    const [profileDataChanged, setProfileDataChanged] = useState([false, null]);
-   const navigate = useNavigate()
 
    const sign = (requestFunction) => async (user) => {
       try {
@@ -128,10 +125,11 @@ export const AuthProvider = ({ children }) => {
                name: "Logout",
                route: "/",
                onClick: (event) => {
+                  console.log(event);
                   event.preventDefault()
                   logoutRequest();
                   localStorage.removeItem("token");
-                  setLogoutClicked(true)
+                  
                },
             },
          ]);
@@ -141,10 +139,6 @@ export const AuthProvider = ({ children }) => {
             { name: "Sign up", route: "/register" },
          ]);
    }, [isAuthenticated]);
-
-   useEffect(() => {
-     if(logoutClicked) navigate("/") 
-   }, [logoutClicked])
 
    useEffect(() => {
       if (profileDataChanged[0]) {
